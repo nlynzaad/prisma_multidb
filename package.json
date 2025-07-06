@@ -1,0 +1,36 @@
+{
+  "name": "prisma_multidb",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "applyDbConfig": "node ./prisma/dbConfigs/applyDbConfig.ts",
+    "db:generate": "pnpm run db:generate:sqlite && pnpm run db:generate:postgresql && pnpm run db:generate:mysql && pnpm run applyDbConfig",
+    "db:migrate": "pnpm run db:migrate:sqlite && pnpm run db:migrate:postgresql && pnpm run db:migrate:mysql && pnpm run applyDbConfig",
+    "db:generate:sqlite": "DATABASE_PROVIDER=sqlite node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma generate && DATABASE_PROVIDER=sqlite node ./prisma/dbConfigs/saveDbConfig.ts",
+    "db:migrate:sqlite": "DATABASE_PROVIDER=sqlite node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma migrate dev && DATABASE_PROVIDER=sqlite node ./prisma/dbConfigs/saveDbConfig.ts",
+    "db:generate:postgresql": "DATABASE_PROVIDER=postgresql node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma generate && DATABASE_PROVIDER=postgresql node ./prisma/dbConfigs/saveDbConfig.ts",
+    "db:migrate:postgresql": "DATABASE_PROVIDER=postgresql node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma migrate dev && DATABASE_PROVIDER=postgresql node ./prisma/dbConfigs/saveDbConfig.ts",
+    "db:generate:mysql": "DATABASE_PROVIDER=mysql node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma generate && DATABASE_PROVIDER=mysql node ./prisma/dbConfigs/saveDbConfig.ts",
+    "db:migrate:mysql": "DATABASE_PROVIDER=mysql node ./prisma/dbConfigs/applyDbConfig.ts && rm -rf ./prisma/schema/generated && prisma migrate dev && DATABASE_PROVIDER=mysql node ./prisma/dbConfigs/saveDbConfig.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "prisma": "^6.11.1",
+    "tsdown": "^0.12.9",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.45.2",
+    "@prisma/adapter-libsql": "^6.11.1",
+    "@prisma/adapter-mariadb": "^6.11.1",
+    "@prisma/adapter-pg": "^6.11.1",
+    "@prisma/client": "6.11.1"
+  }
+}

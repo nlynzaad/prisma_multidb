@@ -1,0 +1,6 @@
+DATABASE_URL_SQLITE="file:../../db/dev.db"
+DATABASE_URL_MYSQL="mysql://test:Test123!@192.168.1.1:3306/testDB"
+DATABASE_URL_POSTGRESQL="postgresql://test:Test123!@192.168.1.1:5432/testDb"
+DATABASE_URL_MYSQL_SHADOW="mysql://test:Test123!@192.168.1.1:3306/testDB_shadow"
+DATABASE_URL_POSTGRESQL_SHADOW="postgresql://test:Test123!@192.168.1.1:5432/testDb_sahdow"
+DATABASE_PROVIDER="sqlite"
