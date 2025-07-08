@@ -4,14 +4,9 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "db:generate": "pnpm run db:generate:sqlite && pnpm run db:generate:postgresql && pnpm run db:generate:mysql",
-    "db:migrate": "pnpm run db:migrate:sqlite && pnpm run db:migrate:postgresql && pnpm run db:migrate:mysql",
-    "db:generate:sqlite": "DATABASE_PROVIDER=sqlite tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=sqlite prisma generate",
-    "db:migrate:sqlite": "DATABASE_PROVIDER=sqlite tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=sqlite prisma migrate dev",
-    "db:generate:postgresql": "DATABASE_PROVIDER=postgresql tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=postgresql prisma generate",
-    "db:migrate:postgresql": "DATABASE_PROVIDER=postgresql tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=postgresql prisma migrate dev",
-    "db:generate:mysql": "DATABASE_PROVIDER=mysql tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=mysql prisma generate",
-    "db:migrate:mysql": "DATABASE_PROVIDER=mysql tsx ./prisma/updateModels.ts && DATABASE_PROVIDER=mysql prisma migrate dev",
+    "db:generate": "tsx ./prisma/generate.ts",
+    "db:migrate": "tsx ./prisma/migrate.ts",
+    "db:migrate:dev": "tsx ./prisma/migrate_dev.ts dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
