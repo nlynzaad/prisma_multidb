@@ -55,17 +55,17 @@ export const getPrismaClient = async () => {
 
 	switch (provider) {
 		case "postgresql": {
-			const {PrismaClient} = await import('prisma/postgresql/generated/client')
+			const {PrismaClient} = await import('./generated/postgresql/client')
 
 			return new PrismaClient({adapter});
 		}
 		case "mysql": {
-			const {PrismaClient} = await import('prisma/mysql/generated/client')
+			const {PrismaClient} = await import('./generated/mysql/client')
 
 			return new PrismaClient({adapter});
 		}
 		case "sqlite": {
-			const {PrismaClient} = await import('prisma/sqlite/generated/client')
+			const {PrismaClient} = await import('./generated/sqlite/client')
 
 			return new PrismaClient({adapter});
 		}

@@ -1,0 +1,11 @@
+generator postgresql_client {
+	provider        = "prisma-client"
+	previewFeatures = ["queryCompiler", "driverAdapters"]
+	output          = "../../generated/postgresql"
+}
+
+datasource postgresql_db {
+	provider          = "postgresql"
+	url               = env("DATABASE_URL_POSTGRESQL")
+	shadowDatabaseUrl = env("DATABASE_URL_POSTGRESQL_SHADOW")
+}

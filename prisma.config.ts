@@ -8,5 +8,8 @@ isValidDBProvider(process.env.DATABASE_PROVIDER)
 
 export default defineConfig({
 	earlyAccess: true,
-	schema: path.join('prisma', process.env.DATABASE_PROVIDER),
+	schema: path.join('prisma', 'schemas', process.env.DATABASE_PROVIDER),
+	migrations: {
+		path: path.join('prisma', 'migrations', process.env.DATABASE_PROVIDER)
+	},
 })

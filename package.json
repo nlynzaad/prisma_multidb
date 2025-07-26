@@ -4,9 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "db:generate": "tsx ./prisma/generate.ts",
-    "db:migrate": "tsx ./prisma/migrate.ts",
-    "db:migrate:dev": "tsx ./prisma/migrate_dev.ts dev",
+    "db:generate": "tsx ./prisma/utils/generate.ts",
+    "db:migrate": "tsx ./prisma/utils/migrate.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,17 +13,17 @@
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
-    "@types/node": "^24.0.10",
-    "prisma": "^6.11.1",
+    "@types/node": "^24.1.0",
+    "prisma": "^6.12.0",
     "tsdown": "^0.12.9",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.45.2",
-    "@prisma/adapter-libsql": "^6.11.1",
-    "@prisma/adapter-mariadb": "^6.11.1",
-    "@prisma/adapter-pg": "^6.11.1",
+    "@dotenvx/dotenvx": "^1.48.3",
+    "@prisma/adapter-libsql": "^6.12.0",
+    "@prisma/adapter-mariadb": "^6.12.0",
+    "@prisma/adapter-pg": "^6.12.0",
     "@prisma/client": "6.11.1"
   }
 }

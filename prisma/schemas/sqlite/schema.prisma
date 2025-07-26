@@ -1,0 +1,10 @@
+generator sqlite_client {
+	provider        = "prisma-client"
+	previewFeatures = ["queryCompiler", "driverAdapters"]
+	output          = "../../generated/sqlite"
+}
+
+datasource sqlite_db {
+	provider = "sqlite"
+	url      = env("DATABASE_URL_SQLITE") // will be ignored
+}

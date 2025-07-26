@@ -1,0 +1,11 @@
+generator mysql_client {
+	provider        = "prisma-client"
+	previewFeatures = ["queryCompiler", "driverAdapters"]
+	output          = "../../generated/mysql"
+}
+
+datasource mysql_db {
+	provider          = "mysql"
+	url               = env("DATABASE_URL_MYSQL")
+	shadowDatabaseUrl = env("DATABASE_URL_MYSQL_SHADOW")
+}
