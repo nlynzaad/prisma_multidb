@@ -1,5 +1,10 @@
 import '../env.js'
 import process from "node:process";
+import type {PrismaClient as SqlitePrismaClient} from './generated/sqlite/client'
+import type {PrismaClient as MysqlPrismaClient} from './generated/mysql/client'
+import type {PrismaClient as PostgreSqlPrismaClient} from './generated/postgresql/client'
+
+type PrismaClient<T extends DBProvider = DBProvider> = T extends 'mysql' ? MysqlPrismaClient : T extends 'postgresql' ? PostgreSqlPrismaClient : SqlitePrismaClient;
 
 export const dbProviders = ['mysql','postgresql','sqlite'] as const
 
@@ -46,30 +51,14 @@ export async function getPrismaAdapter() {
 	}
 }
 
-export const getPrismaClient = async () => {
+export const getPrismaClient = async (): Promise<PrismaClient> => {
 	const adapter = await getPrismaAdapter();
 
 	const provider = process.env.DATABASE_ADAPTER;
 
 	isValidDBProvider(provider);
 
-	switch (provider) {
-		case "postgresql": {
-			const {PrismaClient} = await import('./generated/postgresql/client')
+	const {PrismaClient} = await import(`./generated/${provider}/client`);
 
-			return new PrismaClient({adapter});
-		}
-		case "mysql": {
-			const {PrismaClient} = await import('./generated/mysql/client')
-
-			return new PrismaClient({adapter});
-		}
-		case "sqlite": {
-			const {PrismaClient} = await import('./generated/sqlite/client')
-
-			return new PrismaClient({adapter});
-		}
-		default:
-			throw new Error(`Invalid database provider: ${provider}`);
-	}
+	return new PrismaClient({adapter})
 };
